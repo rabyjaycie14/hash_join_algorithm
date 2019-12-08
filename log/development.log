@@ -687,3 +687,292 @@ FOREIGN KEY ("student_id")
   [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT ?[0m  [["LIMIT", 11]]
   [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
   [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."course_name" = ? LIMIT ?[0m  [["course_name", "CIS 150"], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (14.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "courses_students" ("course_id" integer NOT NULL, "student_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_student_id" ON "courses_students" ("student_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_course_id" ON "courses_students" ("course_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_student_name" ON "courses_students" ("student_name")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_course_name" ON "courses_students" ("course_name")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191208205403"]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE "courses_students"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20191208205403"]]
+  [1m[35m (15.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "courses_students" ("course_id" integer NOT NULL, "student_id" integer NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_student_id" ON "courses_students" ("student_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_course_id" ON "courses_students" ("course_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_student_name" ON "courses_students" ("student_name")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_courses_students_on_course_name" ON "courses_students" ("course_name")[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191208205403"]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (27.0ms)[0m  [1m[35mDROP TABLE "courses_students"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.8ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20191208205403"]]
+  [1m[35m (14.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "join1" ("course_id" integer NOT NULL, "student_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_join1_on_student_id" ON "join1" ("student_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_join1_on_course_id" ON "join1" ("course_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_join1_on_student_name" ON "join1" ("student_name")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_join1_on_course_name" ON "join1" ("course_name")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191208205403"]]
+  [1m[35m (13.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinStudentCourse (20191208205403)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (4.8ms)[0m  [1m[35mDROP TABLE "join1"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20191208205403"]]
+  [1m[35m (13.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses" INNER JOIN "students" ON "students"."course_id" = "courses"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."student_id" = ?[0m  [["student_id", 5]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."course_id" = ? LIMIT ?[0m  [["course_id", 5], ["LIMIT", 11]]
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."course_id" IN (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["course_id", "1"], ["course_id", "2"], ["course_id", "3"], ["course_id", "4"], ["course_id", "5"], ["course_id", "6"], ["course_id", "7"], ["course_id", "8"]]
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mStudent Load (0.8ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."course_name" = ? LIMIT ?[0m  [["course_name", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."course_name" = ? LIMIT ?[0m  [["course_name", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.9ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."course_id" = ? LIMIT ?[0m  [["course_id", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 11]]
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "course_name", "students"."id" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT students.*, courses.* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT course_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" WHERE "students"."id" = ?[0m  [["id", 5]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT course_name, student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, courses.student_id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `puts'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT course_name, "students"."id", student_id, "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:5:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, courses.student_id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT courses.name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT courses.course_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT student.id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "course_name", "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "students"."id", "course_name", "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "course_name", "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "course_name", "students"."student_name" FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.course_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT students.id FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:10:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "students"."id", "students"."student_name", "students"."created_at", "students"."updated_at" FROM "students"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "students"."id", "students"."student_name", "students"."created_at", "students"."updated_at" FROM "students"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "students"."id", "students"."student_name", "students"."created_at", "students"."updated_at" FROM "students"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:9:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:7:in `block (2 levels) in <top (required)>'
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT courses.id, courses.course_name, students.id, students.student_name FROM "students" INNER JOIN "courses" ON "courses"."student_id" = "students"."id"[0m
+  ↳ lib/tasks/assignment_5.rake:8:in `block (2 levels) in <top (required)>'
